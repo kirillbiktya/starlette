@@ -102,6 +102,16 @@ async def dashboard(request):
     ...
 ```
 
+In case when you need at least one scope from multiple:
+```python
+from starlette.authentication import requires
+
+
+@requires(['authenticated', 'admin'], all_scopes=False)
+async def dashboard(request):
+    ...
+```
+
 By default 403 responses will be returned when permissions are not granted.
 In some cases you might want to customize this, for example to hide information
 about the URL layout from unauthenticated users.
